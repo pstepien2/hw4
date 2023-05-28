@@ -1,7 +1,9 @@
 <h1><%= @place["name"] %></h1>
 
 <% if @current_user %>
-  <h2>My Posts</h2>
+  <p>
+    <a href="/posts/new?place_id=<%= @place["id"] %>">New Post</a>
+  </p>
 
   <% @posts = Post.where({ "place_id" => @place["id"], "user_id" => @current_user["id"]}) %>
   <% for post in @posts %>
@@ -10,14 +12,6 @@
     <p><%= post["description"] %></p>
   <% end %>
 
-  <p>
-    <a href="/posts/new?place_id=<%= @place["id"] %>">New Post</a>
-  </p>
-
 <% else %>
   <h2>Login to see your posts!</h2>
 <% end %>
-
-<p>
-  <a href="/places">Back to All Places</a>
-</p>
