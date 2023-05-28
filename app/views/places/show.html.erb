@@ -5,12 +5,16 @@
     <a href="/posts/new?place_id=<%= @place["id"] %>" class="btn btn-primary">New Post</a>
   </p>
 
-  <% @posts = Post.where({ "place_id" => @place["id"], "user_id" => @current_user["id"]}) %>
-  <% for post in @posts %>
-    <h3><%= post["title"] %></h3>
-    <h4><%= post["posted_on"] %></h4>
-    <p><%= post["description"] %></p>
-  <% end %>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
+      <% @posts = Post.where({ "place_id" => @place["id"], "user_id" => @current_user["id"]}) %>
+      <% for post in @posts %>
+        <div class="col-lg-4">
+          <h3><%= post["title"] %></h3>
+          <h6><%= post["posted_on"] %></h6>
+          <p><%= post["description"] %><p>
+        </div>
+      <% end %>
+    </div>
 
 <% else %>
   <h2>Login to see your posts!</h2>
